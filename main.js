@@ -328,10 +328,10 @@ function resetGame() {
         layer.x2 = layer.width;
     });
 
-    // Start a fresh enemy spawn interval
+    // Start the enemy spawn interval
     spawnEnemies();
-    
-    // Start the animation loop again
+
+    // Restart the animation loop
     animate();
 }
 
