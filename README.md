@@ -23,8 +23,3 @@ I built this project as part of my learning journey in web development, and it w
 - **JavaScript**: For the game logic, animations, and interactions.
 - **CSS**: For basic styling of the page.
 - **Sound and Images**: Custom assets used for the plane, enemies, and effects (sounds for laser shots, explosions, and game over).
-
-## How to Run the Game
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/yourusername/plane-shooter-game.git
