@@ -301,18 +301,38 @@ function checkAndIncreaseDifficulty() {
 
 // Reset the game
 function resetGame() {
+    // Stop the previous enemy spawn interval if it exists
+    if (enemySpawnInterval) {
+        clearInterval(enemySpawnInterval);
+    }
+
+    // Set game flags and variables back to their initial state
     gameOverFlag = false;
     enemiesDefeated = 0;
     lasers = [];
     explosions = [];
     enemies = [];
-    startTime = Date.now();
     survivedTime = 0;
+    startTime = Date.now();
+
+    // Reset the player to its initial position and state
     player = new Player(CANVAS_WIDTH / 2 - 50, CANVAS_HEIGHT - 100, 100, 50, playerImage, 2450 / 7, 150, 7, 5);
-    spawnEnemies();
-    animate();
+
+    // Reset game speed and spawn interval
     gameSpeed = 5;
     spawnInterval = 1500;
+
+    // Reset background layers to their starting positions
+    layersObjects.forEach(layer => {
+        layer.x = 0;
+        layer.x2 = layer.width;
+    });
+
+    // Start a fresh enemy spawn interval
+    spawnEnemies();
+    
+    // Start the animation loop again
+    animate();
 }
 
 // Animation loop
