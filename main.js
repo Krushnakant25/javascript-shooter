@@ -242,7 +242,13 @@ function shootLaser() {
 
 // Spawn new enemies at regular intervals
 function spawnEnemies() {
-    setInterval(() => {
+    // Clear any existing spawn interval
+    if (enemySpawnInterval) {
+        clearInterval(enemySpawnInterval);
+    }
+    
+    // Start a new enemy spawn interval
+    enemySpawnInterval = setInterval(() => {
         let enemyType = Math.floor(Math.random() * 4);
         let speed = gameSpeed / speedMultipliers[enemyType];
         let enemy = new Enemy(CANVAS_WIDTH + 200, Math.random() * (CANVAS_HEIGHT - 100), enemyImages[enemyType], enemyType, speed);
@@ -299,7 +305,10 @@ function checkAndIncreaseDifficulty() {
     }
 }
 
-// Reset the game
+// Define a global variable for the enemy spawning interval
+let enemySpawnInterval;
+
+// Reset the game function
 function resetGame() {
     // Stop the previous enemy spawn interval if it exists
     if (enemySpawnInterval) {
@@ -328,27 +337,11 @@ function resetGame() {
         layer.x2 = layer.width;
     });
 
-    // Start the enemy spawn interval
+    // Start the enemy spawn interval again
     spawnEnemies();
 
     // Restart the animation loop
     animate();
-}
-
-// Spawn new enemies at regular intervals
-function spawnEnemies() {
-    // Clear any existing spawn interval
-    if (enemySpawnInterval) {
-        clearInterval(enemySpawnInterval);
-    }
-    
-    // Start a new enemy spawn interval
-    enemySpawnInterval = setInterval(() => {
-        let enemyType = Math.floor(Math.random() * 4);
-        let speed = gameSpeed / speedMultipliers[enemyType];
-        let enemy = new Enemy(CANVAS_WIDTH + 200, Math.random() * (CANVAS_HEIGHT - 100), enemyImages[enemyType], enemyType, speed);
-        enemies.push(enemy);
-    }, spawnInterval);
 }
 
 // Animation loop
